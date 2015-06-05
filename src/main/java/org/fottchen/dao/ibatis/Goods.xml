@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="org.fottchen.po.Goods">
+	<typeAlias alias="Goods"
+		type="org.fottchen.po.Goods" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+	<sql id="table">goods</sql>
+
+	<insert id="insert" parameterClass="Goods">
+		insert into
+		<include refid="table" />
+		( id, name)
+		values
+		( #id#, #name# )
+		<selectKey resultClass="int" keyProperty="id">
+			select LAST_INSERT_ID() as id
+		</selectKey>
+	</insert>
+<!-- 
+	<delete id="deleteByPK" parameterClass="Integer">
+		delete from
+		<include refid="table" />
+		where id=#pk#
+	</delete>
+
+	<update id="update" parameterClass="Application">
+		update
+		<include refid="table" />
+		set
+		appmsgId=#appmsgId#,
+		platform=#platform#,
+		version=#version#,
+		appURL=#appURL#,
+		qrcodeURL=#qrcodeURL#,
+		createTime=#createTime#
+		where
+		id=#id#
+	</update>
+
+	<select id="getByPK" resultClass="Application" parameterClass="Integer">
+		select * from
+		<include refid="table" />
+		where id=#pk#
+		limit 1
+	</select>
+
+	<select id="list" resultClass="Application" parameterClass="HashMap">
+		select
+		*
+		from
+		<include refid="table" />
+		<dynamic prepend="where">
+			<isNotNull property="appmsgId" prepend="and">
+				appmsgId=#appmsgId#
+			</isNotNull>
+			<isNotNull property="version" prepend="and">
+				version=#version#
+			</isNotNull>
+			<isNotNull property="platform" prepend="and">
+				platform=#platform#
+			</isNotNull>
+			<isNotNull property="appURL" prepend="and">
+				appURL=#appURL#
+			</isNotNull>
+			<isNotNull property="qrcodeURL" prepend="and">
+				qrcodeURL=#qrcodeURL#
+			</isNotNull>
+			<isNotNull property="before" prepend="and">
+				createTime &lt;= #before#
+			</isNotNull>
+			<isNotNull property="after" prepend="and">
+				createTime &gt;= #after#
+			</isNotNull>
+		</dynamic>
+		order by createTime desc
+		limit #limit# offset #offset#
+	</select>
+
+	<select id="listByAppMsgId" resultClass="Application"
+		parameterClass="Integer">
+		select
+		*
+		from
+		<include refid="table" />
+		where
+		appmsgId=#appmsgId#
+	</select>
+
+	<select id="count" resultClass="Integer" parameterClass="HashMap">
+		select
+		count(*)
+		from
+		<include refid="table" />
+		<dynamic prepend="where">
+			<isNotNull property="appmsgId" prepend="and">
+				appmsgId=#appmsgId#
+			</isNotNull>
+			<isNotNull property="version" prepend="and">
+				version=#version#
+			</isNotNull>
+			<isNotNull property="platform" prepend="and">
+				platform=#platform#
+			</isNotNull>
+			<isNotNull property="appURL" prepend="and">
+				appURL=#appURL#
+			</isNotNull>
+			<isNotNull property="qrcodeURL" prepend="and">
+				qrcodeURL=#qrcodeURL#
+			</isNotNull>
+			<isNotNull property="before" prepend="and">
+				createTime &lt;= #before#
+			</isNotNull>
+			<isNotNull property="after" prepend="and">
+				createTime &gt;= #after#
+			</isNotNull>
+		</dynamic>
+	</select> -->
+
+</sqlMap>
+

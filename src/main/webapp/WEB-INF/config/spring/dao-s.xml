@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- 配置ibatis的实体类sqlMap文件和数据源 -->
+	<bean autowire="byName" id="sqlMapClient"
+		class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation"
+			value="file:${web-demo.root}WEB-INF/config/ibatis/sqlmap.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="useTransactionAwareDataSource" value="true" />
+	</bean>
+	<!-- 自动在所有bean中查找 setSqlMapClientTemplate 方法， 如果有，则自动注入 -->
+	<bean autowire="byName" id="sqlMapClientTemplate"
+		class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<!-- ==================================================================== -->
+	
+	<bean autowire="byName" id="goodsDao"
+		class="org.fottchen.dao.impl.GoodsDaoImpl" > 
+    </bean>	
+    
+</beans>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- mysql connection -->
+	<bean autowire="byName" id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="driver" value="${mysql_datasource.driver}" />
+		<property name="simultaneousBuildThrottle" value="${mysql_datasource.simultaneousBuildThrottle}" />
+		<property name="driverUrl" value="${mysql_datasource.url}" />
+		<property name="user" value="${mysql_datasource.user}" />
+		<property name="password" value="${mysql_datasource.password}" />
+		<!-- <alias>是连接池的别名，proxoolPool连接池的一种，此外经常使用的连接池还有C3P0 -->
+		<property name="alias" value="proxoolPool" />
+		<!-- proxool自动侦察各个连接状态的时间间隔(毫秒),侦察到空闲的连接就马上回收,超时的销毁 （默认30秒）-->
+		<property name="maximumActiveTime" value="3600000" />
+		<!-- 最少保持的空闲连接数 （默认5个）-->
+		<property name="prototypeCount" value="20" />
+		<!-- 设置连接池内生成的最大连接数/在连接池中所有数据库连接的最大数目（默认15个） -->
+		<property name="maximumConnectionCount" value="${mysql_datasource.maxConns}" />
+		<!-- 设置连接池内生成的最小连接数/在连接池中可用的数据库连接的最少数目（默认5个）-->
+		<property name="minimumConnectionCount" value="5" />
+		<!-- 在Consonl中显示sql -->
+		<property name="trace" value="false" />
+		<property name="verbose" value="true" />
+	</bean>
+	
+</beans>

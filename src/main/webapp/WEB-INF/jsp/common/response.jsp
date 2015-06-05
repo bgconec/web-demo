@@ -1,0 +1,1 @@
+<%@ page language="java" contentType="application/json;charset=UTF-8" pageEncoding="UTF-8" session="false"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>{"code":${status.code},"desc":"${status.desc}"<c:if test="${!empty msg}">,"msg":"${msg}"</c:if><c:if test="${!empty result}">,"result":${result}</c:if>}
