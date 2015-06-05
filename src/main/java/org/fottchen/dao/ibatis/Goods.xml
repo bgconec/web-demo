@@ -17,6 +17,16 @@
 			select LAST_INSERT_ID() as id
 		</selectKey>
 	</insert>
+
+	<update id="update" parameterClass="Goods">
+		update
+		<include refid="table" />
+		set
+		name=#name#
+		where
+		id=#id#
+	</update>
+	
 <!-- 
 	<delete id="deleteByPK" parameterClass="Integer">
 		delete from

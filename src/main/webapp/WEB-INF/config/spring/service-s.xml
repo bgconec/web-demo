@@ -29,6 +29,10 @@
 		<property name="params" ref="connectionManagerParams" />
 	</bean>
 	
+	<context:annotation-config/>
+	
+	<bean autowire="byName" id="goodsService"
+		class="org.fottchen.service.impl.GoodsServiceImpl" />	
 <!-- 	<bean id="httpExecutor" class="com.netease.mail.mailoa.common.HttpExecutor">
 		<property name="client" ref="httpClient" />
 	</bean> -->

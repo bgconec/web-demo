@@ -1,8 +1,10 @@
-package org.fottchen.dao;
+package org.fottchen.service;
 
 import org.fottchen.po.Goods;
 
-public interface GoodsDao {
+public interface GoodsService {
+
+	void updateTwice(Goods goods);
 	
 	Integer insert(Goods goods);
 	
